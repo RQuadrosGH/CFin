@@ -1,0 +1,11 @@
+{
+  "background_color": "#000000",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Finanças $$$",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "$$$",
+  "start_url": "/",
+  "theme_color": "#a09090"
+}
