@@ -10,6 +10,9 @@
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="icon-912.png">
 
+    <!-- 2. TRADUTOR BABEL (PARA A TELA NÃO FICAR PRETA) -->
+    <script src="unpkg.com"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -36,13 +39,13 @@
     }
     </script>
 
-    <!-- 2. REGISTRO DO SERVICE WORKER (OBRIGATÓRIO) -->
+    <!-- 3. REGISTRO DO SERVICE WORKER -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('pwabuilder-sw.js')
             .then(reg => console.log('SW registrado!', reg))
-            .catch(err => console.err('Erro no SW', err));
+            .catch(err => console.error('Erro no SW', err));
         });
       }
     </script>
@@ -50,8 +53,7 @@
   <body>
     <div id="root"></div>
     
-    <!-- ATENÇÃO: Verifique se você subiu os arquivos index.tsx ou index.js no GitHub -->
-    <!-- Se o seu código estiver todo dentro do index.html, você não precisa da linha abaixo -->
-    <script type="module" src="index.tsx"></script>
+    <!-- 4. CHAMADA DO ARQUIVO DA INTERFACE (AJUSTADO PARA JSX + BABEL) -->
+    <script type="text/babel" data-type="module" src="index.jsx"></script>
   </body>
 </html>
