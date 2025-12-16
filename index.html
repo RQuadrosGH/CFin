@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finanças $$$</title>
-    <!-- Links do PWA -->
+    
+    <!-- Links PWA -->
     <link rel="manifest" href="manifest.json">
+    
+    <!-- Scripts Carregados de forma Direta -->
+    <script src="unpkg.com"></script>
+    <script src="unpkg.com"></script>
     <script src="unpkg.com"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "esm.sh",
-        "react-dom": "esm.sh"
-      }
-    }
+
+    <style>
+        body { background-color: #000; color: #fff; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="root">Carregando interface...</div>
+
+    <script type="text/babel">
+        function App() {
+            return (
+                <div className="text-center p-5">
+                    <h1 className="text-4xl font-bold text-green-500 mb-4">💰 Finanças $$$</h1>
+                    <p className="text-xl text-gray-400">Se você está lendo isso, o erro foi corrigido!</p>
+                    <div className="mt-6 p-4 bg-zinc-900 rounded-lg border border-zinc-800">
+                        Seu PWA está pronto para receber o código da IA.
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
-  </head>
-  <body style="background-color: #000; color: white;">
-    <div id="root"></div>
-
-    <script type="text/babel" data-type="module">
-      import React from 'react';
-      import { createRoot } from 'react-dom';
-
-      function App() {
-        return (
-          <div style={{ padding: '50px', textAlign: 'center' }}>
-            <h1 style={{ color: '#4ade80', fontSize: '32px' }}>💰 Meu App de Finanças</h1>
-            <p>Se você está vendo isso, a tela PRETA sumiu!</p>
-            <button style={{ background: '#22c55e', padding: '10px 20px', borderRadius: '8px', marginTop: '20px', border: 'none', color: 'white' }}>
-              Funciona!
-            </button>
-          </div>
-        );
-      }
-
-      const root = createRoot(document.getElementById('root'));
-      root.render(<App />);
-    </script>
-  </body>
+</body>
 </html>
