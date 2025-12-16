@@ -4,71 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Finanças $$$</title>
-
-    <!-- 1. LINKS DO PWA -->
+    <!-- Links do PWA -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="icon-912.png">
-
-    <!-- 2. SCRIPTS ESSENCIAIS (BABEL E TAILWIND) -->
     <script src="unpkg.com"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: #000000;
-        color: #e4e4e7;
-        margin: 0;
-      }
-    </style>
-
     <script type="importmap">
     {
       "imports": {
         "react": "esm.sh",
-        "react-dom": "esm.sh",
-        "lucide-react": "esm.sh"
+        "react-dom": "esm.sh"
       }
     }
     </script>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('pwabuilder-sw.js').catch(err => console.error(err));
-        });
-      }
-    </script>
   </head>
-  <body>
+  <body style="background-color: #000; color: white;">
     <div id="root"></div>
-    
-    <!-- 3. O CÓDIGO DA SUA INTERFACE VEM AQUI -->
+
     <script type="text/babel" data-type="module">
       import React from 'react';
-      import ReactDOM from 'react-dom';
-      import { Wallet, TrendingUp, PieChart } from 'lucide-react';
+      import { createRoot } from 'react-dom';
 
-      // Esta é a função principal que desenha sua tela. 
-      // Se a IA te deu um código grande para o "App", você cola ele aqui dentro.
       function App() {
         return (
-          <div className="p-8 text-center">
-            <h1 className="text-3xl font-bold text-green-500 mb-4">Finanças $$$</h1>
-            <p className="text-zinc-400">Sua interface está pronta para ser carregada.</p>
-            <div className="flex justify-center gap-4 mt-6">
-               <Wallet className="w-10 h-10 text-blue-500" />
-               <TrendingUp className="w-10 h-10 text-green-500" />
-               <PieChart className="w-10 h-10 text-purple-500" />
-            </div>
+          <div style={{ padding: '50px', textAlign: 'center' }}>
+            <h1 style={{ color: '#4ade80', fontSize: '32px' }}>💰 Meu App de Finanças</h1>
+            <p>Se você está vendo isso, a tela PRETA sumiu!</p>
+            <button style={{ background: '#22c55e', padding: '10px 20px', borderRadius: '8px', marginTop: '20px', border: 'none', color: 'white' }}>
+              Funciona!
+            </button>
           </div>
         );
       }
 
-      const root = ReactDOM.createRoot(document.getElementById('root'));
+      const root = createRoot(document.getElementById('root'));
       root.render(<App />);
     </script>
   </body>
-  </html>
+</html>
