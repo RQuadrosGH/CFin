@@ -7,35 +7,92 @@
     
     <!-- Links PWA -->
     <link rel="manifest" href="manifest.json">
-    
-    <!-- Scripts Carregados de forma Direta -->
+    <meta name="theme-color" content="#000000">
+
+    <!-- Scripts em Versão Compatível (UMD) -->
     <script src="unpkg.com"></script>
     <script src="unpkg.com"></script>
     <script src="unpkg.com"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Biblioteca de Ícones -->
+    <script src="unpkg.com"></script>
+    <script src="unpkg.com"></script>
 
     <style>
-        body { background-color: #000; color: #fff; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        body { background-color: #000; color: #fff; margin: 0; font-family: sans-serif; }
     </style>
 </head>
 <body>
     <div id="root">Carregando interface...</div>
 
     <script type="text/babel">
+        // Importando os componentes do Lucide de forma compatível com navegador
+        const { Wallet, TrendingUp, PieChart, ArrowUpCircle, ArrowDownCircle } = LucideReact;
+
         function App() {
+            // Se você quiser trocar por algum dado da IA, altere as frases abaixo
+            const saldo = "R$ 5.250,00";
+
             return (
-                <div className="text-center p-5">
-                    <h1 className="text-4xl font-bold text-green-500 mb-4">💰 Finanças $$$</h1>
-                    <p className="text-xl text-gray-400">Se você está lendo isso, o erro foi corrigido!</p>
-                    <div className="mt-6 p-4 bg-zinc-900 rounded-lg border border-zinc-800">
-                        Seu PWA está pronto para receber o código da IA.
+                <div className="min-h-screen bg-black p-6 text-white">
+                    <div className="max-w-md mx-auto">
+                        <header className="flex justify-between items-center mb-8">
+                            <h1 className="text-2xl font-bold text-green-500 flex items-center gap-2">
+                                <Wallet /> Finanças $$$
+                            </h1>
+                        </header>
+
+                        {/* Card de Saldo */}
+                        <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 mb-6 text-center">
+                            <p className="text-zinc-400 text-sm mb-1">Saldo Total</p>
+                            <h2 className="text-4xl font-bold text-white">{saldo}</h2>
+                        </div>
+
+                        {/* Botões de Ação */}
+                        <div className="grid grid-cols-2 gap-4 mb-8">
+                            <button className="bg-zinc-900 p-4 rounded-2xl border border-zinc-800 flex flex-col items-center gap-2 text-green-500">
+                                <ArrowUpCircle /> <span>Receita</span>
+                            </button>
+                            <button className="bg-zinc-900 p-4 rounded-2xl border border-zinc-800 flex flex-col items-center gap-2 text-red-500">
+                                <ArrowDownCircle /> <span>Despesa</span>
+                            </button>
+                        </div>
+
+                        {/* Lista de Exemplo */}
+                        <h3 className="text-lg font-semibold mb-4">Atividades Recentes</h3>
+                        <div className="space-y-4">
+                            <div className="flex justify-between items-center p-4 bg-zinc-900/50 rounded-2xl">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-green-500/10 rounded-full text-green-500"><TrendingUp size={20}/></div>
+                                    <span>Investimento</span>
+                                </div>
+                                <span className="text-green-500">+ R$ 200,00</span>
+                            </div>
+                            <div className="flex justify-between items-center p-4 bg-zinc-900/50 rounded-2xl">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-purple-500/10 rounded-full text-purple-500"><PieChart size={20}/></div>
+                                    <span>Assinaturas</span>
+                                </div>
+                                <span className="text-zinc-400">- R$ 45,90</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
         }
 
+        // Renderização final
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
+    </script>
+
+    <script>
+        // Registro simplificado do Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('pwabuilder-sw.js').catch(() => {});
+            });
+        }
     </script>
 </body>
 </html>
