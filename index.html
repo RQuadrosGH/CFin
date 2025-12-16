@@ -4,75 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finanças $$$</title>
+    
+    <!-- Configurações PWA (Obrigatório) -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="icon-912.png">
+
+    <!-- Estilos e Fontes -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="fonts.googleapis.com" rel="stylesheet">
+    
     <style>
-        body { background-color: #000; color: #fff; margin: 0; font-family: sans-serif; }
-        .card { background: #18181b; border: 1px solid #27272a; border-radius: 24px; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #000000;
+        color: #e4e4e7;
+        margin: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .glass-card {
+        background: rgba(24, 24, 27, 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(63, 63, 70, 0.4);
+      }
     </style>
 </head>
-<body>
-    <div id="root" class="min-h-screen p-6">
-        <div class="max-w-md mx-auto">
-            <!-- Cabeçalho -->
-            <header class="flex justify-between items-center mb-8 mt-4">
-                <h1 class="text-2xl font-bold text-green-500">💰 Finanças $$$</h1>
-            </header>
+<body class="min-h-screen pb-20">
 
-            <!-- Card de Saldo -->
-            <div class="card p-8 mb-6 text-center shadow-xl">
-                <p class="text-zinc-400 text-sm font-medium mb-1 uppercase">Saldo Total</p>
-                <h2 id="saldo" class="text-4xl font-bold text-white tracking-tight">R$ 5.250,00</h2>
+    <div class="max-w-md mx-auto p-6">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8 pt-4">
+            <div>
+                <p class="text-zinc-500 text-sm">Bem-vindo de volta,</p>
+                <h1 class="text-xl font-bold text-white">Meu Gerenciador</h1>
+            </div>
+            <div class="w-10 h-10 bg-green-500/20 rounded-full border border-green-500/50 flex items-center justify-center text-green-500 font-bold">
+                $
+            </div>
+        </header>
+
+        <!-- Card de Saldo Principal -->
+        <div class="glass-card p-8 rounded-[2rem] mb-8 relative overflow-hidden shadow-2xl">
+            <div class="relative z-10">
+                <p class="text-zinc-400 text-sm font-medium mb-2 uppercase tracking-widest">Saldo Disponível</p>
+                <h2 class="text-4xl font-bold text-white tracking-tight mb-6">R$ 12.450,00</h2>
+                <div class="flex gap-3">
+                    <div class="flex-1 bg-green-500/10 p-3 rounded-2xl border border-green-500/20">
+                        <p class="text-[10px] text-green-500 uppercase font-bold">Entradas</p>
+                        <p class="text-sm font-semibold">+ R$ 3.200</p>
+                    </div>
+                    <div class="flex-1 bg-red-500/10 p-3 rounded-2xl border border-red-500/20">
+                        <p class="text-[10px] text-red-500 uppercase font-bold">Saídas</p>
+                        <p class="text-sm font-semibold">- R$ 1.150</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ações Rápidas -->
+        <div class="grid grid-cols-4 gap-4 mb-8 text-center">
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-green-500">↑</div>
+                <span class="text-xs">Enviar</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-blue-500">↓</div>
+                <span class="text-xs">Receber</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-purple-500">⊞</div>
+                <span class="text-xs">Pix</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-zinc-400">⋯</div>
+                <span class="text-xs">Mais</span>
+            </div>
+        </div>
+
+        <!-- Atividades Recentes -->
+        <div class="flex justify-between items-end mb-6">
+            <h3 class="text-lg font-bold">Últimas Transações</h3>
+            <span class="text-green-500 text-xs font-bold">Histórico</span>
+        </div>
+
+        <div class="space-y-4">
+            <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-zinc-800 rounded-xl flex items-center justify-center">🛍️</div>
+                    <div>
+                        <p class="text-sm font-bold">Mercado Livre</p>
+                        <p class="text-[10px] text-zinc-500">15 DEZ, 10:30</p>
+                    </div>
+                </div>
+                <span class="font-bold text-red-400">- R$ 189,90</span>
             </div>
 
-            <!-- Botões -->
-            <div class="grid grid-cols-2 gap-4 mb-8">
-                <div class="card p-5 flex flex-col items-center gap-2 text-green-500">
-                    <span class="text-2xl">▲</span>
-                    <span class="text-sm font-semibold">Receita</span>
-                </div>
-                <div class="card p-5 flex flex-col items-center gap-2 text-red-500">
-                    <span class="text-2xl">▼</span>
-                    <span class="text-sm font-semibold">Despesa</span>
-                </div>
-            </div>
-
-            <!-- Atividades -->
-            <h3 class="text-lg font-bold mb-4">Atividades Recentes</h3>
-            <div class="space-y-3">
-                <div class="card p-4 flex justify-between items-center bg-opacity-50">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center text-green-500">📈</div>
-                        <div>
-                            <p class="text-sm font-medium">Investimentos</p>
-                            <p class="text-xs text-zinc-500">15 Dez 2025</p>
-                        </div>
+            <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-zinc-800 rounded-xl flex items-center justify-center">💼</div>
+                    <div>
+                        <p class="text-sm font-bold">Salário Mensal</p>
+                        <p class="text-[10px] text-zinc-500">05 DEZ, 08:00</p>
                     </div>
-                    <span class="font-bold text-green-500">+R$ 250</span>
                 </div>
-                <div class="card p-4 flex justify-between items-center">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-500">💳</div>
-                        <div>
-                            <p class="text-sm font-medium">Assinatura Netflix</p>
-                            <p class="text-xs text-zinc-500">14 Dez 2025</p>
-                        </div>
-                    </div>
-                    <span class="font-bold text-zinc-400">-R$ 55</span>
-                </div>
+                <span class="font-bold text-green-500">+ R$ 5.000,00</span>
             </div>
         </div>
     </div>
 
+    <!-- Navegação Inferior (Estilo App) -->
+    <nav class="fixed bottom-0 left-0 right-0 glass-card border-t-0 rounded-t-[2rem] p-4 flex justify-around items-center z-50">
+        <div class="text-green-500 text-xl">🏠</div>
+        <div class="text-zinc-500 text-xl">📊</div>
+        <div class="text-zinc-500 text-xl">💳</div>
+        <div class="text-zinc-500 text-xl">👤</div>
+    </nav>
+
     <script>
-        // Registro do Service Worker (PWA)
+        // Registro do PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('pwabuilder-sw.js').catch(() => {});
             });
         }
-        console.log("App de Finanças carregado com sucesso em 2025!");
     </script>
 </body>
 </html>
