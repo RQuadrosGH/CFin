@@ -5,75 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finanças $$$</title>
     
-    <!-- Links PWA -->
+    <!-- Configurações de PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="icon-912.png">
 
-    <!-- Scripts em Versão Compatível (UMD) -->
+    <!-- Bibliotecas Externas (Carregamento Direto) -->
     <script src="unpkg.com"></script>
     <script src="unpkg.com"></script>
     <script src="unpkg.com"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Biblioteca de Ícones -->
-    <script src="unpkg.com"></script>
     <script src="unpkg.com"></script>
 
     <style>
-        body { background-color: #000; color: #fff; margin: 0; font-family: sans-serif; }
+        body { background-color: #000; color: #fff; margin: 0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        #root { min-height: 100vh; }
     </style>
 </head>
 <body>
-    <div id="root">Carregando interface...</div>
+    <div id="root">
+        <!-- Texto de segurança caso o JS demore -->
+        <div style="display: flex; align-items: center; justify-content: center; height: 100vh; color: #4ade80;">
+            Iniciando Finanças $$$...
+        </div>
+    </div>
 
     <script type="text/babel">
-        // Importando os componentes do Lucide de forma compatível com navegador
+        // Pegando os ícones da biblioteca Lucide
         const { Wallet, TrendingUp, PieChart, ArrowUpCircle, ArrowDownCircle } = LucideReact;
 
         function App() {
-            // Se você quiser trocar por algum dado da IA, altere as frases abaixo
-            const saldo = "R$ 5.250,00";
-
             return (
                 <div className="min-h-screen bg-black p-6 text-white">
                     <div className="max-w-md mx-auto">
-                        <header className="flex justify-between items-center mb-8">
+                        {/* Cabeçalho */}
+                        <header className="flex justify-between items-center mb-8 mt-4">
                             <h1 className="text-2xl font-bold text-green-500 flex items-center gap-2">
-                                <Wallet /> Finanças $$$
+                                <Wallet className="text-green-500" /> Finanças $$$
                             </h1>
                         </header>
 
-                        {/* Card de Saldo */}
-                        <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 mb-6 text-center">
-                            <p className="text-zinc-400 text-sm mb-1">Saldo Total</p>
-                            <h2 className="text-4xl font-bold text-white">{saldo}</h2>
+                        {/* Card Principal de Saldo */}
+                        <div className="bg-zinc-900 p-8 rounded-[32px] border border-zinc-800 mb-6 text-center shadow-2xl">
+                            <p className="text-zinc-400 text-sm font-medium mb-1 uppercase tracking-wider">Saldo Total</p>
+                            <h2 className="text-4xl font-bold text-white tracking-tight">R$ 5.250,00</h2>
                         </div>
 
-                        {/* Botões de Ação */}
+                        {/* Botões de Ação Rápida */}
                         <div className="grid grid-cols-2 gap-4 mb-8">
-                            <button className="bg-zinc-900 p-4 rounded-2xl border border-zinc-800 flex flex-col items-center gap-2 text-green-500">
-                                <ArrowUpCircle /> <span>Receita</span>
-                            </button>
-                            <button className="bg-zinc-900 p-4 rounded-2xl border border-zinc-800 flex flex-col items-center gap-2 text-red-500">
-                                <ArrowDownCircle /> <span>Despesa</span>
-                            </button>
+                            <div className="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 flex flex-col items-center gap-2 text-green-500 active:scale-95 transition-transform">
+                                <ArrowUpCircle size={32} />
+                                <span className="text-sm font-semibold">Receita</span>
+                            </div>
+                            <div className="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 flex flex-col items-center gap-2 text-red-500 active:scale-95 transition-transform">
+                                <ArrowDownCircle size={32} />
+                                <span className="text-sm font-semibold">Despesa</span>
+                            </div>
                         </div>
 
-                        {/* Lista de Exemplo */}
-                        <h3 className="text-lg font-semibold mb-4">Atividades Recentes</h3>
-                        <div className="space-y-4">
-                            <div className="flex justify-between items-center p-4 bg-zinc-900/50 rounded-2xl">
-                                <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-green-500/10 rounded-full text-green-500"><TrendingUp size={20}/></div>
-                                    <span>Investimento</span>
+                        {/* Seção de Atividades */}
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-lg font-bold">Atividades</h3>
+                            <span className="text-green-500 text-sm">Ver tudo</span>
+                        </div>
+
+                        <div className="space-y-3">
+                            <div className="flex justify-between items-center p-4 bg-zinc-900/40 rounded-2xl border border-zinc-800/50">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 bg-green-500/10 rounded-xl text-green-500">
+                                        <TrendingUp size={20}/>
+                                    </div>
+                                    <div>
+                                        <p className="font-medium text-zinc-100">Investimentos</p>
+                                        <p className="text-xs text-zinc-500">Hoje, 14:20</p>
+                                    </div>
                                 </div>
-                                <span className="text-green-500">+ R$ 200,00</span>
+                                <span className="font-bold text-green-500">+ R$ 250,00</span>
                             </div>
-                            <div className="flex justify-between items-center p-4 bg-zinc-900/50 rounded-2xl">
-                                <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-purple-500/10 rounded-full text-purple-500"><PieChart size={20}/></div>
-                                    <span>Assinaturas</span>
+
+                            <div className="flex justify-between items-center p-4 bg-zinc-900/40 rounded-2xl border border-zinc-800/50">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 bg-purple-500/10 rounded-xl text-purple-500">
+                                        <PieChart size={20}/>
+                                    </div>
+                                    <div>
+                                        <p className="font-medium text-zinc-100">Assinaturas</p>
+                                        <p className="text-xs text-zinc-500">Ontem, 09:10</p>
+                                    </div>
                                 </div>
-                                <span className="text-zinc-400">- R$ 45,90</span>
+                                <span className="font-bold text-zinc-400">- R$ 42,90</span>
                             </div>
                         </div>
                     </div>
@@ -81,16 +101,16 @@
             );
         }
 
-        // Renderização final
+        // Renderização Final para 2025
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
 
     <script>
-        // Registro simplificado do Service Worker
+        // Registro do Service Worker para o PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('pwabuilder-sw.js').catch(() => {});
+                navigator.serviceWorker.register('pwabuilder-sw.js').catch(err => console.log(err));
             });
         }
     </script>
